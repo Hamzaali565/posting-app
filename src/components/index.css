@@ -1,0 +1,54 @@
+.head{
+    display: flex;
+    justify-content: center;
+margin-top: 30px;
+
+}
+.upload{
+    
+    margin-top: 30px;
+    border: 3px solid gray;
+    border-radius: 20px;
+    width: 700px;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+}
+.inpContainer{
+    margin-top: 30px;
+}
+.inp1{
+ margin-left: 20px;
+    padding: 20px;
+    width: 300px;
+    border-radius: 20px;
+    border: 1px solid gray;
+}
+.fail{
+    padding: 20px;
+    margin-left: 10px;
+    /* background-color: brown; */
+}
+.opload{
+    /* border: 3px solid black; */
+    /* width: 400px; */
+    display: flex;
+    justify-content: center;
+}
+.Post>button{
+  background-color:azure;
+  color:black;
+  padding: 10px 15px 10px 15px;
+border-radius: 20px;
+border: none;
+
+}
+.Post>button:hover{
+    background-color:black;
+    color:white;
+}
+.Post{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
