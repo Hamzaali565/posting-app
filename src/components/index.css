@@ -4,6 +4,9 @@
 margin-top: 30px;
 
 }
+.hamza{
+    border: 1px solid black;
+}
 .upload{
     
     margin-top: 30px;
@@ -51,4 +54,29 @@ border: none;
     display: flex;
     justify-content: center;
     margin-top: 30px;
+}
+.img1{
+    border-radius: 30px;
+}
+.post1{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.post2{
+    border: 1px solid black;
+    width: 600px;
+    height: 600px;
+   
+}
+.imagedate{
+    margin-left: 15px;
+margin-top: 20px;
+display: flex;
+}
+.namedate{
+    margin: 3px 0px 0px 8px;
+}
+.caption{
+    
 }

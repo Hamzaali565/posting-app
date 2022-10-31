@@ -15,7 +15,7 @@ const firebaseConfig = {
     storageBucket: "completepost-abd5b.appspot.com",
     messagingSenderId: "1087595352198",
     appId: "1:1087595352198:web:4de7331a64f3dc66e88107",
-    measurementId: "G-BBLPP702K7"
+    // measurementId: "G-BBLPP702K7"
 };
 
 // Initialize Firebase
@@ -30,65 +30,98 @@ const db = getFirestore(app);
 
 const Post = () => {
 
-    const [comp, setComp] = useState([])
-    const [text, setText] = useState("")
+    // const [comp, setComp] = useState([])
+    // const [text, setText] = useState("")
+
+    const [postText, setPostText] = useState("");
+    const [comp, setComp] = useState([]);
+
 
     useEffect(() => {
 
-        const callData = async () => {
-            const querySnapshot = await getDocs(collection(db, "CoPost"));
-            querySnapshot.forEach((doc) => {
-                console.log(`${doc.id} => `, doc.data());
-                setComp([...comp, doc.data()])
-                //  another way
-                // setComp((prev) => {
-                //     let newArray = [...prev, doc.data()];
-                //     return newArray;
-                // });
 
-            });
-        }
-        // callData();
+        // let unsubscribe = null;
+        // const getRealTimeData = async () => {
+        //     const q = query(collection(db, "CoPost"));
+        //     unsubscribe = onSnapshot(q, (querySnapshot) => {
+        //         const posts = [];
+        //         querySnapshot.forEach((doc) => {
+        //             posts.push(doc.data());
+        //         });
+        //         setComp(posts);
+        //         console.log("Posts", comp);
+        //     });
+
+        // };
+        // getRealTimeData();
+
+        // return () => {
+        //     unsubscribe();
+        //     console.log("cleanUp Function");
+        // }
 
         let unsubscribe = null;
-        const realTime = async () => {
-            const q = query(collection(db, "CoPost"), orderBy("createdOn", "desc"));
+        const getRealTimeData = async () => {
+            const q = query(collection(db, "CoPost"));
             unsubscribe = onSnapshot(q, (querySnapshot) => {
-                const CoPost = [];
+                const posts = [];
                 querySnapshot.forEach((doc) => {
-                    CoPost.push(doc.data());
+                    posts.push(doc.data());
                 });
-                setComp(CoPost)
-                console.log("send", comp);
+                setComp(posts);
+                console.log("Posts", posts);
             });
+
         };
-        realTime();
+        getRealTimeData();
+
         return () => {
             unsubscribe();
+            console.log("cleanUp Function");
         }
+
+
+
     }, [])
+    // {console.log(posts)}
 
 
 
 
     const send = async (e) => {
+        // e.preventDefault();
+
+        // try {
+        //     const docRef =
+        //         await addDoc(collection(db, "CoPost"), {
+        //              createdOn: new Date().getTime(),
+        //             text: postText,
+        //             // post: "abbacus",
+        //         });
+        //     console.log("Document written with ID: ", docRef.id);
+        // } catch (e) {
+        //     console.error("Error adding document: ", e);
+        // }
+
         e.preventDefault();
 
+
+
+        // console.log('postText', postText);
+
         try {
-            const docRef = await addDoc(collection(db, "CoPost"), {
-                // profile: "https://www.unigreet.com/wp-content/uploads/2020/04/Smiley-816x1024.jpg",
-                // createdOn: serverTimestamp(),
-                Text: text,
-                // post: "abbacus",
-            });
+            const docRef =
+                await addDoc(collection(db, "CoPost"), {
+                    profile: "https://www.unigreet.com/wp-content/uploads/2020/04/Smiley-816x1024.jpg",
+                    createdOn: serverTimestamp(),
+                    text: postText,
+                    pic: "abbacus"
+                });
             console.log("Document written with ID: ", docRef.id);
         } catch (e) {
             console.error("Error adding document: ", e);
         }
-
     }
-
-
 
     return (
         <div>
@@ -103,7 +136,7 @@ const Post = () => {
                                     type="text"
                                     placeholder="type caption . . ."
                                     onChange={(e) => {
-                                        setText(e.target.value)
+                                        setPostText(e.target.value)
                                     }}
                                 />
                                 <input
@@ -118,38 +151,40 @@ const Post = () => {
                     </form>
                 </div>
             </div>
-            <div>
+            <div className="post1">
 
+                {
+                    comp.map((eachPost, i) => (
+                        <div className="post2" key={i}>
+                            <div className="imagedate">
+                                <div>
+                                    <img src={eachPost?.profile} alt="" width="50" height="50" className="img1" />
+                                </div>                        
+                                <div className="namedate">
+                                    <span className="name">Hamza Ali</span><br />
+                                    <span>{
+                                        moment(
+                                            (eachPost?.createdOn?.seconds) ?
+                                                eachPost?.createdOn?.seconds * 1000
+                                                :
+                                                undefined
+                                        )
+                                            .fromNow()
+                                        // .format ('Do MMMM, h:mm a ')
+                                    }</span>
+                                </div>
+                            </div>
 
-            {comp.map((eachvalue, i) => {
-                <div key={i}>
+                            <div className="caption">{eachPost?.text}</div>
+                        </div>
 
-                    {/* <div><img src={eachvalue?.profile} alt="" /> <span>{
-                        moment(
-                            (eachvalue?.createdOn?.seconds) ?
-                                eachvalue?.createdOn?.seconds * 1000
-                                :
-                                undefined
-                        )
-                            .fromNow()
-                        // .format ('Do MMMM, h:mm a ')
-                    }</span></div> */}
-                    <div>
-                        {eachvalue?.Text}
-                    </div>
-                    {/* <div>
-                        {eachvalue?.post}
-                    </div> */}
+                    ))
+                }
 
-                </div>
-
-
-
-            })}
-</div>
+            </div>
 
 
         </div>
     )
-};
+}
 export default Post;
