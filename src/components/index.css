@@ -35,6 +35,7 @@ margin-top: 30px;
 .opload{
     /* border: 3px solid black; */
     /* width: 400px; */
+
     display: flex;
     justify-content: center;
 }
@@ -64,9 +65,11 @@ border: none;
     margin-top: 20px;
 }
 .post2{
+    background-color: whitesmoke;
     border: 1px solid black;
+    border-radius: 20px;
     width: 600px;
-    height: 600px;
+    /* height: 600px; */
    
 }
 .imagedate{
@@ -78,5 +81,53 @@ display: flex;
     margin: 3px 0px 0px 8px;
 }
 .caption{
+    /* border: 1px solid black; */
+ margin-left: 45px;
+ margin-top: 20px;   
+/* height: 50px; */
+ width: 500px;
+}
+.pic{
+    /* border-radius: 5px; */
+    /* border: 1px solid black; */
+    width: 500px;
+    height: 450px;
+    margin-left: 45px;
+    margin-top: 20px;
+}
+.pic>img{
+    border-radius: 5px;
+    height: 450px;
+    width: 500px;
     
+}
+.threePair{
+    display: flex;
+    justify-content: space-around;
+    height: 40px;
+    margin-top: 30px;
+}
+.twoButtons{
+    margin-left: 280px;
+    /* padding: 4px; */
+}
+.twoButtons>button{
+    padding: 7px;
+    border-radius: 20px;
+    margin: 4px;
+    color: white;
+    background-color: black;
+}
+.update>form>input{
+width: 400px;
+padding: 10px;
+border: 1px solid gray;
+border-radius: 20px;
+}
+.update>form>button{
+    padding: 7px;
+    border-radius: 20px;
+    margin-left: 14px;
+    color: white;
+    background-color: black;
 }
