@@ -19,8 +19,12 @@ margin-top: 30px;
 }
 .inpContainer{
     margin-top: 30px;
+    border:  1px solid black;
+    height: 80px;
+    width: 700px;
 }
-.inp1{
+.inp1 {
+    
  margin-left: 20px;
     padding: 20px;
     width: 300px;
@@ -130,4 +134,20 @@ border-radius: 20px;
     margin-left: 14px;
     color: white;
     background-color: black;
+}
+#inputTag{
+    /* display: none; */
+    border: 1px solid black;
+  }
+  label{
+    cursor: pointer;
+}
+.upload123{
+    height: 30px;
+    width: 30px;
+}
+.icon{
+    margin-top: 50px;
+    margin-left: 30px;
+    margin-top: 10px;
 }

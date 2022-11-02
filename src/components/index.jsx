@@ -144,19 +144,30 @@ const Post = () => {
                         <div className="inpContainer">
                             <div>
                                 <input
-                                    className="inp1"
-                                    type="text"
+                                    className="inp1" type="text"
                                     placeholder="type caption . . ."
                                     onChange={(e) => {
                                         setPostText(e.target.value)
                                     }}
                                 />
-                                <input
+                                {/* <input
                                     className="fail" type="file"
                                     onChange={(e) => {
                                         setPic(e.currentTarget.files[0])
                                     }}
-                                />
+                                /> */}
+                                <label for="inputTag">
+                                    <span className="icon">
+                                        <img className="upload123" src="https://cdn-icons-png.flaticon.com/512/4551/4551689.png" alt="" />
+                                    </span>
+                                    <input id="inputTag"
+                                        type="file"
+                                        onChange={(e) => {
+                                            setPic(e.currentTarget.files[0])
+                                        }} />
+                                    <br />
+                                    {/* <span><img className="upload123" src="https://cdn-icons-png.flaticon.com/512/4551/4551689.png" alt="" /></span> */}
+                                </label>
                             </div>
                         </div>
                         <div className="Post">
@@ -178,17 +189,17 @@ const Post = () => {
 
                                     <div>
                                         <img src={eachPost?.profile}
-                                         alt="" width="50" height="50"
-                                          className="img1" />
+                                            alt="" width="50" height="50"
+                                            className="img1" />
                                     </div>
                                     <div className="namedate">
                                         <span className="name">
                                             Hamza Ali</span>
-                                            <br />
+                                        <br />
                                         <span>{
                                             moment(
                                                 (eachPost?.createdOn?.seconds) ?
-                                                    eachPost?.createdOn?.seconds 
+                                                    eachPost?.createdOn?.seconds
                                                     * 1000
                                                     :
                                                     undefined
@@ -215,7 +226,7 @@ const Post = () => {
 
                                 <div className="caption">
                                     {(eachPost.id === isEditing) ?
-                                       <div className="update"> <form onSubmit={updatePost}>
+                                        <div className="update"> <form onSubmit={updatePost}>
                                             <input type="text"
                                                 value={isEditingText}
                                                 placeholder="Enter Your New Text"
