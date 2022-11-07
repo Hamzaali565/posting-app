@@ -2,37 +2,79 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body{
+  height: 100vh;
+  padding: 0px;
+  margin: 0px;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.bond{
+  margin-top: 0px;
+  padding: 0px;
+  /* background-color: aqua; */
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.loginNav, .logoutNav {
+  /* text-decoration: underline; */
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-around;
+  /* padding: 10px; */
 }
 
-.App-link {
-  color: #61dafb;
+.loginNav>li, .logoutNav >li {
+  /* padding: 10px; */
+  margin: 10px;
+  list-style: none;
+  color: aqua;
+  /* text-decoration: none; */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.loginNav>li>a,.logoutNav>li>a {
+  text-decoration: none;
+  color: black;
+}
+.loginNav>li>a:hover, .logoutNav>li>a:hover {
+  /* text-decoration: overline; */
+  text-decoration: underline;
+
+  color: navy;
+}
+button{
+  background: none;
+  border: none;
+}
+.img1{
+  height:40px;
+  background: none;
+  /* background-color: #61dafb; */
+  width: 40px;
+}
+.bott1{
+  /* margin-left: 50px; */
+}
+.img1:hover{
+  cursor: pointer;
+}
+
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  /* border-bottom: 1px dotted black; */
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }

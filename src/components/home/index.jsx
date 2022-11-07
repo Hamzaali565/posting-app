@@ -31,7 +31,7 @@ const db = getFirestore(app);
 
 
 
-const Post = () => {
+const Home = () => {
 
     // const [comp, setComp] = useState([])
     // const [text, setText] = useState("")
@@ -248,4 +248,4 @@ const Post = () => {
         </div>
     )
 }
-export default Post;
+export default Home;
