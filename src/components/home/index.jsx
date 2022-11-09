@@ -9,7 +9,7 @@ import {
     serverTimestamp, deleteDoc, updateDoc
 } from "firebase/firestore";
 // import { editableInputTypes } from "@testing-library/user-event/dist/utils";
-
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCuFtjuEJLeQSmI7HSonBzve3Pq1NxIkF4",
@@ -41,7 +41,7 @@ const Home = () => {
     const [pic, setPic] = useState(null);
     const [isEditing, setEditing] = useState(null);
     const [isEditingText, setEditingText] = useState("");
-
+    const [username, setUsername] = useState("");
 
     const send = async (e) => {
 
@@ -81,8 +81,10 @@ const Home = () => {
     }
 
     useEffect(() => {
-
         let unsubscribe = null;
+        const auth = getAuth();
+        let unSubscribe = onAuthStateChanged(auth, (user) => {
+        setUsername(auth.currentUser.displayName);})
         const getRealTimeData = async () => {
             const q = query(collection(db, "CoPost"), orderBy("createdOn", "desc"));
             unsubscribe = onSnapshot(q, (querySnapshot) => {
@@ -142,7 +144,7 @@ const Home = () => {
                 <div className="upload">
                     <form >
                         <div className="inpContainer">
-                            <div>
+                            
                                 <input
                                     className="inp1" type="text"
                                     placeholder="type caption . . ."
@@ -156,10 +158,7 @@ const Home = () => {
                                         setPic(e.currentTarget.files[0])
                                     }}
                                 /> */}
-                                <label for="inputTag">
-                                    <span className="icon">
-                                        <img className="upload123" src="https://cdn-icons-png.flaticon.com/512/4551/4551689.png" alt="" />
-                                    </span>
+                              
                                     <input id="inputTag"
                                         type="file"
                                         onChange={(e) => {
@@ -167,8 +166,8 @@ const Home = () => {
                                         }} />
                                     <br />
                                     {/* <span><img className="upload123" src="https://cdn-icons-png.flaticon.com/512/4551/4551689.png" alt="" /></span> */}
-                                </label>
-                            </div>
+                              
+                            
                         </div>
                         <div className="Post">
                             <button onClick={send}>
@@ -194,7 +193,7 @@ const Home = () => {
                                     </div>
                                     <div className="namedate">
                                         <span className="name">
-                                            Hamza Ali</span>
+                                            {username}</span>
                                         <br />
                                         <span>{
                                             moment(

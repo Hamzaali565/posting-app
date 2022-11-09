@@ -1,11 +1,62 @@
+import { useState } from 'react';
 import './index.css'
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import Signup from '../signup';
 
+const Login = () => {
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [changer, setChanger] = useState(true)
+    const formSubmit = (e) => {
+        e.preventDefault();
 
-const Login = ()=>{
+        const auth = getAuth();
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                console.log("SignIn",userCredential);
+            })
+            .catch((error) => {
+                console.log("ERROR", error);
+                // const errorCode = error.code;
+                // const errorMessage = error.message;
+            });
 
-    return(
-        <h1>This is Login page</h1>
-    )
-    
     }
-    export default Login;
+
+
+    return (
+        <div>
+            <h1>This is Login page</h1>
+            <form onSubmit={formSubmit}>
+
+                <div>
+                    <span>E-mail</span>
+                    <span><input type="email"
+                        onChange={(e) => {
+                            setEmail(e.target.value)
+                        }}
+                        name="email" id="" /></span></div>
+                <div>
+                    <span>Password</span>
+                    <span><input type="password"
+                        onChange={(e) => {
+                            setPassword(e.target.value)
+                        }}
+                        name="current-password" id="" /></span></div>
+                <div>
+                    <button type='submit'>Login</button>
+                </div>
+
+                                  
+            
+            </form>
+        </div>
+
+
+
+
+
+    )
+
+}
+export default Login;

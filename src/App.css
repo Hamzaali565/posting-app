@@ -46,8 +46,12 @@ button{
   background: none;
   /* background-color: #61dafb; */
   width: 40px;
+  /* border: 1px; */
 }
 .bott1{
+  border-radius: 20px;
+  padding: 5px;
+  border: 1px solid black;
   /* margin-left: 50px; */
 }
 .img1:hover{
@@ -77,4 +81,9 @@ button{
 
 .tooltip:hover .tooltiptext {
   visibility: visible;
+}
+.username{
+/* margin-left: 00px; */
+/* margin-top: 10px; */
+border: 1px solid black;
 }

@@ -19,14 +19,16 @@ margin-top: 30px;
 }
 .inpContainer{
     margin-top: 30px;
-    border:  1px solid black;
+    /* border:  1px solid black; */
     height: 80px;
     width: 700px;
+    
 }
 .inp1 {
     
- margin-left: 20px;
+ margin-left: 50px;
     padding: 20px;
+    margin-top: 20px;
     width: 300px;
     border-radius: 20px;
     border: 1px solid gray;
@@ -42,6 +44,9 @@ margin-top: 30px;
 
     display: flex;
     justify-content: center;
+}
+#inputTag{
+    margin-left: 20px;
 }
 .Post>button{
   background-color:azure;
@@ -95,13 +100,13 @@ display: flex;
     /* border-radius: 5px; */
     /* border: 1px solid black; */
     width: 500px;
-    height: 450px;
+    height: 400px;
     margin-left: 45px;
     margin-top: 20px;
 }
 .pic>img{
     border-radius: 5px;
-    height: 450px;
+    height: 400px;
     width: 500px;
     
 }
@@ -137,7 +142,7 @@ border-radius: 20px;
 }
 #inputTag{
     /* display: none; */
-    border: 1px solid black;
+    /* border: 1px solid black; */
   }
   label{
     cursor: pointer;

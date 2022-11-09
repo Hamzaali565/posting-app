@@ -9,55 +9,77 @@ import Profile from './components/profile';
 import Signup from './components/signup';
 import { useState } from 'react';
 import { Button } from 'bootstrap';
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { useEffect } from 'react';
 
 
 
 function App() {
   const [login, setLogin] = useState(true);
+  const [username, setUsername]= useState("")
+  useEffect(() => {
+
+    const auth = getAuth();
+    // setUsername(auth.currentUser.displayName);
+    let unSubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setLogin(true)
+      } else {
+        setLogin(false)
+      }
+    });
+    return () => {
+      unSubscribe();
+    }
+  }, [])
+
+
+
+  const logoutHandler = () => {
+    const auth = getAuth();
+    signOut(auth).then(() => {
+      // Sign-out successful.
+    }).catch((error) => {
+      // An error happened.
+    });
+
+  }
+  const loginHandler = () => {
+
+  };
+
+
   return (
     <div className='bond'>
-      {(login)
-        ?
-        <ul className='loginNav'>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/gallery">Gallery</Link></li>
-          <li><Link to="/about">About</Link></li>
-          <li><Link to="/profile">Profile</Link></li>
-          <div className='bott1'><button onClick={() => { setLogin(!login) }}>{
-            (login) ?
-            <div className='tooltip'>
-            <img
-              className='img1'
-              src='https://www.iconpacks.net/icons/2/free-user-logout-icon-3056-thumb.png' />
-              <span class="tooltiptext">Logout</span>
+      <div>
+        {(login)
+          ?
+          <div>
+            <ul className='loginNav'>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/gallery">Gallery</Link></li>
+              <li><Link to="/about">About</Link></li>
+              <li><Link to="/profile">Profile</Link></li>
+             
+              <div className='bott1'><button onClick={logoutHandler}>
+                <div className='tooltip'>
+                  <img
+                    className='img1'
+                    src='https://www.iconpacks.net/icons/2/free-user-logout-icon-3056-thumb.png' />
+                  <span class="tooltiptext">Logout</span>
+                </div>
+              </button>
               </div>
-              :
-              null
-          }</button></div>
-
-        </ul>
-        :
-        <ul className='logoutNav'>
-          <li><Link to="login">Login</Link></li>
-          <li><Link to="/signup">Signup</Link></li>
-          
-          <button onClick={() => { setLogin(!login) }}>
-            {
-              (!login) ?
-              <div className="tooltip">
-                <img
-                  className='img1'
-                  src='https://www.iconpacks.net/icons/2/free-user-login-icon-3057-thumb.png' 
-                  />
-                <span class="tooltiptext">Login</span>
-              </div>
-                  :
-              null
-            }
-          </button>
-        </ul>
-      }
-    <hr></hr>
+            </ul>
+            <hr></hr>
+          </div>
+          :
+          <ul className='loginNav'>
+              <li><Link to="/login">Login</Link></li>
+              <li><Link to="/signup">Signup</Link></li>
+              </ul>
+          }
+      </div>
       {(login)
         ?
         <Routes>
